@@ -4,10 +4,12 @@
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
       "prestart": "node buildScripts/startMessage",
-      "open:src": "node buildScripts/srcServer.js", 
+      "open:src": "node buildScripts/srcServer.js",
       "security-check": "nsp check",
-      "localtunnel": "lt --port 3000", 
-      "start": "npm-run-all --parallel security-check open:src localtunnel"
+      "localtunnel": "lt --port 3000",
+      "lint": "esw src buildScripts --color", 
+      "lint:watch": "npm run lint -- --watch",
+      "start": "npm-run-all --parallel security-check open:src lint:watch"
   },
   "author": "Arbab",
   "license": "MIT",
@@ -49,5 +51,11 @@
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.0",
     "webpack-md5-hash": "0.0.5"
+  }, 
+  "eslintConfig": {
+    "plugins": ["example"],
+    "env": {
+      "example/custom": true
+    }
   }
 }

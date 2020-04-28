@@ -2,6 +2,7 @@
 var express = require("express");
 var path = require('path');
 var open = require('open');
+var book = require('../lib/grade').gradeBook
 var port = 3000;
 ///var baseUrl = 'http://localhost';
 const bodyParser = require('body-parser');
@@ -56,7 +57,7 @@ app.get("/average", function (req, res) {
     } else {
         book.reset();
         for (var i = 0; i < grades.length; i++) {
-            book.addGrade(parseInt(grades[i]));;
+            book.addGrade(parseInt(grades[i]));
         }
         res.send("Average is " + book.getAverage());
     }
@@ -68,6 +69,7 @@ app.listen(port, function (err) {
     if (err) {
         console.log(err);
     } else {
+        // console.log('Whats that???');
         open('http://localhost:' + port);
     }
 });
